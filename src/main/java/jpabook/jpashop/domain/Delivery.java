@@ -4,30 +4,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @since       2021.06.23
  * @author      pollra
- * @description member
+ * @description delivery
  **********************************************************************************************************************/
-@Setter
 @Getter
+@Setter
 @Entity
-public class Member {
+public class Delivery {
+
     @Id @GeneratedValue
-    @Column(name = "MEMBER_ID")
+    @Column(name = "DELIVERY_ID")
     private Long id;
 
-    private String name;
-
     private String city;
-
     private String street;
-
     private String zipcode;
 
-    @OneToMany(mappedBy = "member")
-    private List<Order> orders = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus status; //ENUM [READY(준비), COMP(배송)]
 }
